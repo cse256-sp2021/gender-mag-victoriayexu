@@ -112,5 +112,10 @@ $(".permbutton").click(function (e) {
   );
 });
 
+$(".permbutton").append("Edit Permissions");
+console.log($(".permbutton"));
+
+$("#perm-dialog-advanced-button").append("More...");
+
 // ---- Assign unique ids to everything that doesn't have an ID ----
 $("#html-loc").find("*").uniqueId();
