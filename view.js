@@ -139,6 +139,8 @@ console.log($(".permbutton"));
 
 $("#ui-id-2").append(" Summary");
 $("#perm-dialog-advanced-button").text("Edit Detailed Permissions");
+$("#perm-dialog-advanced-button").css("color", "light-blue");
+$("#ui-id-5").text("Detailed Permissions");
 $("#adv_effective_tab_elem").text("Resulting (Applied) Permissions");
 $("#perm_entry_change_user").text("Select User...");
 $("#adv_perm_replace_child_permissions_label").append(
