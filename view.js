@@ -1,6 +1,7 @@
 // ---- Define your dialogs  and panels here ----
 
 // permission panel
+var permisPrefix = "neweffperm";
 let newEffPermPanel = define_new_effective_permissions(
   "neweffperm",
   true,
@@ -15,16 +16,16 @@ let newEffPermPanel = define_new_effective_permissions(
 // );
 
 // user select box
-// let chooseUser = define_new_user_select_field(
-//   "chosenuser",
-//   "Select User to View...",
-//   function (selected_user) {
-//     $("#neweffperm").attr("username", selected_user);
-//   }
-// );
-// // file being viewed
+let chooseUser = define_new_user_select_field(
+  "chosenuser",
+  "Select User to View...",
+  (on_user_change = function (selected_user) {
+    $("#neweffperm").attr("filepath", "/C/presentation_documents");
+    $("#neweffperm").attr("username", selected_user);
+  })
+);
+// file being viewed
 // $("#neweffperm").attr("filepath", "/C/presentation_documents");
-// // let chooseFile = "/C/presentation_documents";
 
 // making panels show!!
 $("#sidepanel").append(
@@ -34,18 +35,20 @@ $("#sidepanel").append(chooseUser);
 $("#sidepanel").append(newEffPermPanel);
 
 // info explanation popup
-let infoBox = define_new_dialog("infopopup", "Description");
-// let fileinQuestion = path_to_file[chooseFile];
-// let currentUser = all_users[chooseUser];
+let infoBox = define_new_dialog("infopopup", "Permission Description");
+let chooseFile = "/C/presentation_documents";
 
-// let Explain = get_explanation_text(infoBox);
+let fileinQuestionObj = path_to_file[chooseFile];
+let currentUserObj = all_users[$("#neweffperm").attr("username")];
 
-// let userAction = allow_user_action(
-//   fileinQuestion,
-//   selected_user,
-//   permission_to_check,
-//   (explain_why = true)
-// );
+let actionAllowedness = allow_user_action(
+  fileinQuestionObj,
+  currentUserObj,
+  true,
+  (explain_why = true)
+);
+
+let Explain = get_explanation_text(actionAllowedness);
 
 // making the i's open
 $(".perm_info").click(function () {
@@ -54,6 +57,7 @@ $(".perm_info").click(function () {
   console.log("clicked!");
   //   $("#neweffperm").attr("filepath");
   //   $("#usersel").attr("username");
+  $("#infopopup").text(Explain);
 });
 
 // ---- Display file structure ----
