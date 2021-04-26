@@ -1,28 +1,43 @@
 // ---- Define your dialogs  and panels here ----
 
+// permission panel
 let newEffPermPanel = define_new_effective_permissions(
   "neweffperm",
   true,
   null
 );
-let chooseUser = define_new_user_select_field(
-  "usersel",
-  "Select User...",
-  (on_user_change = function (selected_user) {
-    $("#neweffperm").attr("username", selected_user);
-  })
-);
-let chooseFile = "/C/presentation_documents";
+// let chooseUser = define_new_user_select_field(
+//   "usersel",
+//   "Select User...",
+//   (on_user_change = function (selected_user) {
+//     $("#neweffperm").attr("username", selected_user);
+//   })
+// );
 
+// user select box
+// let chooseUser = define_new_user_select_field(
+//   "chosenuser",
+//   "Select User to View...",
+//   function (selected_user) {
+//     $("#neweffperm").attr("username", selected_user);
+//   }
+// );
+// // file being viewed
+// $("#neweffperm").attr("filepath", "/C/presentation_documents");
+// // let chooseFile = "/C/presentation_documents";
+
+// making panels show!!
 $("#sidepanel").append(
-  "Effective (True) Permissions for File: presentation_documents"
+  "Effective (True) Permissions for Folder: presentation_documents"
 );
 $("#sidepanel").append(chooseUser);
 $("#sidepanel").append(newEffPermPanel);
 
+// info explanation popup
 let infoBox = define_new_dialog("infopopup", "Description");
-let fileinQuestion = path_to_file[chooseFile];
-let currentUser = all_users[chooseUser];
+// let fileinQuestion = path_to_file[chooseFile];
+// let currentUser = all_users[chooseUser];
+
 // let Explain = get_explanation_text(infoBox);
 
 // let userAction = allow_user_action(
@@ -37,6 +52,8 @@ $(".perm_info").click(function () {
   // stuff that should happen on click goes here
   infoBox.dialog("open");
   console.log("clicked!");
+  //   $("#neweffperm").attr("filepath");
+  //   $("#usersel").attr("username");
 });
 
 // ---- Display file structure ----
@@ -116,6 +133,9 @@ $(".permbutton").append("Edit Permissions");
 console.log($(".permbutton"));
 
 $("#perm-dialog-advanced-button").append("More...");
+$("#adv_effective_tab_elem").append("Functioning Permissions");
+
+("Replace all child object permissions with inheritable permissions from this object. When checked, all child objects will be assigned any inheritable permissions from the current object (See current object name above).");
 
 // ---- Assign unique ids to everything that doesn't have an ID ----
 $("#html-loc").find("*").uniqueId();
