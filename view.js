@@ -29,7 +29,7 @@ let chooseUser = define_new_user_select_field(
 
 // making panels show!!
 $("#sidepanel").append(
-  "Effective (True) Permissions for Folder: presentation_documents"
+  "Resulting (Applied) Permissions Explained for Folder: presentation_documents"
 );
 $("#sidepanel").append(chooseUser);
 $("#sidepanel").append(newEffPermPanel);
@@ -133,13 +133,22 @@ $(".permbutton").click(function (e) {
   );
 });
 
+// text edits
 $(".permbutton").append("Edit Permissions");
 console.log($(".permbutton"));
 
-$("#perm-dialog-advanced-button").append("More...");
-$("#adv_effective_tab_elem").append("Functioning Permissions");
+$("#ui-id-2").append(" Summary");
+$("#perm-dialog-advanced-button").text("Edit Detailed Permissions");
+$("#adv_effective_tab_elem").text("Resulting (Applied) Permissions");
+$("#perm_entry_change_user").text("Select User...");
+$("#adv_perm_replace_child_permissions_label").append(
+  " (NOTE: 'deny' permissions OVERRIDE 'allow' permissions)"
+);
+$("#adv_effective_user_select").text("Select User...");
 
-("Replace all child object permissions with inheritable permissions from this object. When checked, all child objects will be assigned any inheritable permissions from the current object (See current object name above).");
+$("#permdialog_advanced_explantion_text").text(
+  "TIP: Click 'Edit Detailed Permissions' to control specific permissions."
+);
 
 // ---- Assign unique ids to everything that doesn't have an ID ----
 $("#html-loc").find("*").uniqueId();
