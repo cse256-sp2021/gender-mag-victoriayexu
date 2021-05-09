@@ -27,9 +27,13 @@ let chooseUser = define_new_user_select_field(
 // file being viewed
 // $("#neweffperm").attr("filepath", "/C/presentation_documents");
 
+// file select box?
+
+
+
 // making panels show!!
 $("#sidepanel").append(
-  "Resulting (Applied) Permissions Explained for Folder: presentation_documents"
+  "Check the Resulting (Applied) Permissions for Folder: presentation_documents"
 );
 $("#sidepanel").append(chooseUser);
 $("#sidepanel").append(newEffPermPanel);
@@ -138,10 +142,10 @@ $(".permbutton").append("Edit Permissions");
 console.log($(".permbutton"));
 
 $("#ui-id-2").append(" Summary");
-$("#perm-dialog-advanced-button").text("Edit Detailed Permissions");
+$("#perm-dialog-advanced-button").text("Edit Permission Details");
 $("#perm-dialog-advanced-button").css("color", "light-blue");
 $("#ui-id-5").text("Detailed Permissions");
-$("#adv_effective_tab_elem").text("Resulting (Applied) Permissions");
+$("#adv_effective_tab_elem").text("See Resulting (Applied) Permissions");
 $("#perm_entry_change_user").text("Select User...");
 $("#adv_perm_replace_child_permissions_label").append(
   " (NOTE: 'deny' permissions OVERRIDE 'allow' permissions)"
@@ -149,7 +153,7 @@ $("#adv_perm_replace_child_permissions_label").append(
 $("#adv_effective_user_select").text("Select User...");
 
 $("#permdialog_advanced_explantion_text").text(
-  "TIP: Click 'Edit Detailed Permissions' to control specific permissions."
+  "TIP: Click 'Edit Permission Details' to control specific permissions."
 );
 
 // ---- Assign unique ids to everything that doesn't have an ID ----
