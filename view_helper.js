@@ -503,6 +503,9 @@ function define_new_user_select_field(id_prefix, select_button_text, on_user_cha
 
 // Get a (very simple) text representation of a permissions explanation
 function get_explanation_text(explanation) {
+    if (explanation.is_allowed = false) {
+        return "This action is NOT allowed";
+    }
     return `
     Action allowed?: ${explanation.is_allowed}; 
     Because of

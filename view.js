@@ -7,20 +7,13 @@ let newEffPermPanel = define_new_effective_permissions(
   true,
   null
 );
-// let chooseUser = define_new_user_select_field(
-//   "usersel",
-//   "Select User...",
-//   (on_user_change = function (selected_user) {
-//     $("#neweffperm").attr("username", selected_user);
-//   })
-// );
 
 // user select box
 let chooseUser = define_new_user_select_field(
   "chosenuser",
   "Select User to View...",
   (on_user_change = function (selected_user) {
-    $("#neweffperm").attr("filepath", "/C/presentation_documents");
+    // $("#neweffperm").attr("filepath", "/C/presentation_documents");
     $("#neweffperm").attr("username", selected_user);
   })
 );
@@ -28,14 +21,23 @@ let chooseUser = define_new_user_select_field(
 // $("#neweffperm").attr("filepath", "/C/presentation_documents");
 
 // file select box?
-
-
+// let chooseFile = define_new_user_select_field(
+//   "chosefile",
+//   "Select File...",
+//   (on_user_change = function (selected_file) {
+//     $("#neweffperm").attr("filepath", selected_file);
+//   })
+// );
 
 // making panels show!!
 $("#sidepanel").append(
-  "Check the Resulting (Applied) Permissions for Folder: presentation_documents"
+  "Check the Resulting (Applied) Permissions for a Folder: "
+);
+$("#sidepanel").append(
+  "Choose file to view by clicking on its 'Check File' button, then pick which user's permissions to check for below."
 );
 $("#sidepanel").append(chooseUser);
+// $("#sidepanel").append(chooseFile);
 $("#sidepanel").append(newEffPermPanel);
 
 // info explanation popup
@@ -76,6 +78,9 @@ function make_file_element(file_obj) {
                 <span class="oi oi-folder" id="${file_hash}_icon"/> ${file_obj.filename} 
                 <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
                     <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
+                </button>
+                <button class="ui-button ui-widget ui-corner-all filecheckbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
+                    <span> Check File <span>
                 </button>
             </h3>
         </div>`);
@@ -141,14 +146,25 @@ $(".permbutton").click(function (e) {
 $(".permbutton").append("Edit Permissions");
 console.log($(".permbutton"));
 
+$(".filecheckbutton").click(function (e) {
+  let path = e.currentTarget.getAttribute("path");
+  $("#neweffperm").attr("filepath", path);
+  $("#panel_filepath").text(`${$("#neweffperm").attr("filepath")}`);
+  console.log(path);
+  console.log("registered as: " + $("#neweffperm").attr("filepath"));
+});
+
 $("#ui-id-2").append(" Summary");
 $("#perm-dialog-advanced-button").text("Edit Permission Details");
 $("#perm-dialog-advanced-button").css("color", "light-blue");
 $("#ui-id-5").text("Detailed Permissions");
 $("#adv_effective_tab_elem").text("See Resulting (Applied) Permissions");
 $("#perm_entry_change_user").text("Select User...");
+$("#adv_perm_inheritance_label").append(
+  " (This means the parent object's permissions will be applied to this current object, too)"
+);
 $("#adv_perm_replace_child_permissions_label").append(
-  " (NOTE: 'deny' permissions OVERRIDE 'allow' permissions)"
+  " (This means that all child objects will get any inheritable permissions from the current object above. NOTE: 'deny' permissions OVERRIDE 'allow' permissions)"
 );
 $("#adv_effective_user_select").text("Select User...");
 
